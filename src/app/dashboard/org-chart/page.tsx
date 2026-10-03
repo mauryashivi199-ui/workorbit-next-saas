@@ -18,7 +18,7 @@ export default function OrgChartPage() {
             <div className="h-12 w-12 rounded-2xl bg-emerald-500/20 text-emerald-400 font-bold mx-auto flex items-center justify-center text-sm mb-3">
               SM
             </div>
-            <div className="font-bold text-white text-base">Shivam Maurya</div>
+            <div className="font-bold text-white text-base">Shivi Maurya</div>
             <div className="text-xs text-emerald-400 font-semibold mt-0.5">Chief Executive & Architect</div>
             <div className="text-[10px] text-slate-400 mt-2">Executive Leadership • WO-001</div>
           </div>

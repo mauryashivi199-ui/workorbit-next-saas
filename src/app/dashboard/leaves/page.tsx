@@ -54,7 +54,7 @@ export default function LeavesManagementPage() {
     e.preventDefault();
     const item: LeaveItem = {
       id: Date.now().toString(),
-      employee: "Shivam Maurya (Current User)",
+      employee: "Shivi Maurya (Current User)",
       type: newLeave.type,
       dates: `${newLeave.startDate} to ${newLeave.endDate}`,
       days: 1,

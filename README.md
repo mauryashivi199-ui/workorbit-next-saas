@@ -190,5 +190,5 @@ To test the interface on your smartphone:
 This project is open-source and licensed under the [MIT License](LICENSE).
 
 <div align="center">
-  <b>Built with ❤️ by Shivam Maurya</b>
+  <b>Built with ❤️ by Shivi Maurya</b>
 </div>

@@ -18,7 +18,7 @@ interface PayrollItem {
 const INITIAL_PAYROLL: PayrollItem[] = [
   {
     id: "p-1",
-    employee: "Shivam Maurya (WO-001)",
+    employee: "Shivi Maurya (WO-001)",
     role: "Lead Software Architect",
     basic: 85000,
     hra: 34000,

@@ -51,7 +51,7 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState<{ name: string; role: string; email: string }>({
-    name: "Shivam Maurya (Admin)",
+    name: "Shivi Maurya (Admin)",
     role: "SUPER_ADMIN",
     email: "admin@workorbit.io",
   });

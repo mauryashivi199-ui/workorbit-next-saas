@@ -22,7 +22,7 @@ import {
 
 export default function DynamicDashboard() {
   const [user, setUser] = useState({
-    name: "Shivam Maurya (Admin)",
+    name: "Shivi Maurya (Admin)",
     role: "SUPER_ADMIN",
     email: "admin@workorbit.io",
   });
@@ -69,7 +69,7 @@ export default function DynamicDashboard() {
           <p className="text-xs md:text-sm text-slate-400">
             {isAdmin
               ? "WorkOrbit live telemetry: 3 active branches, 48 total employees, 0 pending payroll issues."
-              : "Software Engineering Division • Reporting to Shivam Maurya • Shift: 09:00 AM - 06:00 PM"}
+              : "Software Engineering Division • Reporting to Shivi Maurya • Shift: 09:00 AM - 06:00 PM"}
           </p>
         </div>
 
@@ -180,7 +180,7 @@ export default function DynamicDashboard() {
 
               <div className="space-y-3">
                 {[
-                  { name: "Shivam Maurya", role: "Lead Software Architect", status: "Clocked In", time: "09:02 AM", location: "Greater Noida HQ", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
+                  { name: "Shivi Maurya", role: "Lead Software Architect", status: "Clocked In", time: "09:02 AM", location: "Greater Noida HQ", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
                   { name: "Shivangi Maurya", role: "HR Operations Director", status: "Clocked In", time: "09:14 AM", location: "Greater Noida HQ", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
                   { name: "Alex Kumar", role: "Senior Full Stack Engineer", status: "Remote Punch", time: "09:30 AM", location: "Remote (103.21.x.x)", badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20" },
                   { name: "Pooja Sharma", role: "Frontend UI Specialist", status: "Approved Leave", time: "Full Day", location: "Approved by HR", badge: "bg-amber-500/10 text-amber-400 border-amber-500/20" },

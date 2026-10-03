@@ -10,7 +10,7 @@ export default function AttendancePage() {
   const [records, setRecords] = useState([
     {
       id: "att-1",
-      employee: "Shivam Maurya (WO-001)",
+      employee: "Shivi Maurya (WO-001)",
       date: "Today, Oct 03",
       clockIn: "09:02 AM",
       clockOut: "--",

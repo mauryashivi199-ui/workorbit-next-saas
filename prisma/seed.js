@@ -76,7 +76,7 @@ async function main() {
     update: {},
     create: {
       email: "admin@workorbit.io",
-      name: "Shivam Maurya (Admin)",
+      name: "Shivi Maurya (Admin)",
       password: hashedPassword,
       role: "SUPER_ADMIN",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
@@ -89,7 +89,7 @@ async function main() {
     create: {
       employeeCode: "WO-001",
       userId: adminUser.id,
-      firstName: "Shivam",
+      firstName: "Shivi",
       lastName: "Maurya",
       email: "admin@workorbit.io",
       phone: "+91 9956572394",

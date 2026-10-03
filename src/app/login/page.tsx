@@ -23,7 +23,7 @@ export default function AuthPage() {
     const displayName = isRegister
       ? name
       : role === "SUPER_ADMIN"
-      ? "Shivam Maurya (Admin)"
+      ? "Shivi Maurya (Admin)"
       : "Alex Kumar (Employee)";
 
     localStorage.setItem(
@@ -45,7 +45,7 @@ export default function AuthPage() {
     if (targetRole === "SUPER_ADMIN") {
       setEmail("admin@workorbit.io");
       setPassword("admin123");
-      setName("Shivam Maurya");
+      setName("Shivi Maurya");
     } else {
       setEmail("alex.kumar@workorbit.io");
       setPassword("emp123");

@@ -19,7 +19,7 @@ const INITIAL_EMPLOYEES: EmployeeItem[] = [
   {
     id: "1",
     code: "WO-001",
-    name: "Shivam Maurya",
+    name: "Shivi Maurya",
     email: "admin@workorbit.io",
     phone: "+91 9956572394",
     department: "Engineering & Tech",
