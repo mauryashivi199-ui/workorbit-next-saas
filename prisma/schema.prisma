@@ -1,0 +1,191 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  SUPER_ADMIN
+  HR_ADMIN
+  MANAGER
+  EMPLOYEE
+}
+
+enum AttendanceStatus {
+  PRESENT
+  LATE
+  HALF_DAY
+  ABSENT
+  HOLIDAY
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum CandidateStage {
+  APPLIED
+  SCREENING
+  INTERVIEW
+  OFFERED
+  HIRED
+  REJECTED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  password     String
+  name         String
+  role         Role      @default(EMPLOYEE)
+  avatar       String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  employee     Employee?
+}
+
+model Department {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  code        String       @unique
+  description String?
+  color       String       @default("#3b82f6")
+  employees   Employee[]
+  jobs        JobPosting[]
+}
+
+model Designation {
+  id          String       @id @default(cuid())
+  title       String       @unique
+  department  String?
+  employees   Employee[]
+}
+
+model Employee {
+  id             String            @id @default(cuid())
+  employeeCode   String            @unique
+  userId         String?           @unique
+  user           User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  firstName      String
+  lastName       String
+  email          String            @unique
+  phone          String?
+  joiningDate    DateTime          @default(now())
+  status         String            @default("ACTIVE") // ACTIVE, ON_LEAVE, TERMINATED
+  
+  departmentId   String?
+  department     Department?       @relation(fields: [departmentId], references: [id])
+  
+  designationId  String?
+  designation    Designation?      @relation(fields: [designationId], references: [id])
+  
+  managerId      String?
+  manager        Employee?         @relation("ManagerSubordinates", fields: [managerId], references: [id])
+  subordinates   Employee[]        @relation("ManagerSubordinates")
+  
+  attendances    AttendanceRecord[]
+  leaveRequests  LeaveApplication[]
+  salaries       SalaryStructure[]
+  payslips       Payslip[]
+  
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+model AttendanceRecord {
+  id           String            @id @default(cuid())
+  employeeId   String
+  employee     Employee          @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  
+  date         DateTime          @default(now())
+  clockIn      DateTime?
+  clockOut     DateTime?
+  totalHours   Float             @default(0)
+  status       AttendanceStatus  @default(PRESENT)
+  ipAddress    String?
+  location     String?
+}
+
+model LeaveApplication {
+  id           String       @id @default(cuid())
+  employeeId   String
+  employee     Employee     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  
+  leaveType    String       // CASUAL, SICK, PAID, MATERNITY
+  startDate    DateTime
+  endDate      DateTime
+  totalDays    Int
+  reason       String
+  status       LeaveStatus  @default(PENDING)
+  approvedBy   String?
+  
+  createdAt    DateTime     @default(now())
+}
+
+model SalaryStructure {
+  id             String    @id @default(cuid())
+  employeeId     String    @unique
+  employee       Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  
+  basicSalary    Float
+  hra            Float
+  allowance      Float     @default(0)
+  pfDeduction    Float     @default(0)
+  taxDeduction   Float     @default(0)
+  netSalary      Float
+  
+  createdAt      DateTime  @default(now())
+}
+
+model Payslip {
+  id             String    @id @default(cuid())
+  employeeId     String
+  employee       Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  
+  month          Int
+  year           Int
+  basicSalary    Float
+  allowances     Float
+  deductions     Float
+  netPay         Float
+  paymentDate    DateTime  @default(now())
+  paymentStatus  String    @default("PAID") // PAID, PENDING
+}
+
+model JobPosting {
+  id           String        @id @default(cuid())
+  title        String
+  departmentId String?
+  department   Department?   @relation(fields: [departmentId], references: [id])
+  location     String        @default("Remote / Onsite")
+  type         String        @default("Full-time") // Full-time, Part-time, Contract
+  salaryRange  String?
+  description  String
+  requirements String
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  
+  candidates   Candidate[]
+}
+
+model Candidate {
+  id             String          @id @default(cuid())
+  jobId          String
+  job            JobPosting      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  name           String
+  email          String
+  phone          String?
+  resumeUrl      String?
+  experience     String?
+  stage          CandidateStage  @default(APPLIED)
+  rating         Int             @default(3) // 1 to 5
+  notes          String?
+  appliedAt      DateTime        @default(now())
+}
