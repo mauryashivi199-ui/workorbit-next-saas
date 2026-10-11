@@ -60,11 +60,13 @@ export default function AuthPage() {
 
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-4">
-            <div className="h-10 w-10 rounded-2xl bg-emerald-500 flex items-center justify-center font-bold text-slate-950 text-xl shadow-lg shadow-emerald-500/30">
-              <Zap className="h-5 w-5 stroke-[2.5]" />
-            </div>
-            <span className="text-2xl font-bold tracking-tight">WorkOrbit</span>
+          <Link href="/" className="inline-flex items-center gap-3 mb-4">
+            <img
+              src="/images/crewzen-logo.png"
+              alt="Crewzen Logo"
+              className="h-11 w-auto object-contain rounded-xl shadow-lg shadow-emerald-500/20"
+            />
+            <span className="text-2xl font-bold tracking-tight text-white">Crew<span className="text-emerald-400">zen</span></span>
           </Link>
           <h2 className="text-2xl font-bold tracking-tight text-white">
             {isRegister ? "Create New Workspace Account" : "Sign in to your workplace"}

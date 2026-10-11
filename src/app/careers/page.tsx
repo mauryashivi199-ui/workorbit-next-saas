@@ -63,11 +63,13 @@ export default function CareersPage() {
       {/* Careers Header */}
       <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-xl bg-emerald-500 flex items-center justify-center font-bold text-slate-950">
-              WO
-            </div>
-            <span className="text-xl font-bold tracking-tight">WorkOrbit Careers</span>
+          <Link href="/" className="flex items-center gap-2.5">
+            <img
+              src="/images/crewzen-logo.png"
+              alt="Crewzen Logo"
+              className="h-9 w-auto object-contain rounded-lg"
+            />
+            <span className="text-xl font-bold tracking-tight text-white">Crew<span className="text-emerald-400">zen</span> Careers</span>
           </Link>
           <Link
             href="/dashboard"

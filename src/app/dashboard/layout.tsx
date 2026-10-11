@@ -84,13 +84,15 @@ export default function DashboardLayout({
         }`}
       >
         <div className="h-18 px-6 flex items-center justify-between border-b border-slate-800/80 py-4">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-bold text-slate-950 shadow-md shadow-emerald-500/20">
-              <Zap className="h-5 w-5 stroke-[2.5]" />
-            </div>
+          <Link href="/" className="flex items-center gap-2.5">
+            <img
+              src="/images/crewzen-logo.png"
+              alt="Crewzen Logo"
+              className="h-9 w-auto object-contain rounded-lg"
+            />
             <div>
-              <span className="text-lg font-bold tracking-tight text-white">WorkOrbit</span>
-              <span className={`text-[10px] ml-1.5 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
+              <span className="text-base font-extrabold tracking-tight text-white">Crew<span className="text-emerald-400">zen</span></span>
+              <span className={`text-[9px] ml-1.5 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
                 user.role === "SUPER_ADMIN"
                   ? "bg-emerald-500/20 text-emerald-400"
                   : "bg-cyan-500/20 text-cyan-400"

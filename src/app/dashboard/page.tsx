@@ -68,7 +68,7 @@ export default function DynamicDashboard() {
           </h1>
           <p className="text-xs md:text-sm text-slate-400">
             {isAdmin
-              ? "WorkOrbit live telemetry: 3 active branches, 48 total employees, 0 pending payroll issues."
+              ? "Crewzen live telemetry: 3 active branches, 48 total employees, 0 pending payroll issues."
               : "Software Engineering Division • Reporting to Shivi Maurya • Shift: 09:00 AM - 06:00 PM"}
           </p>
         </div>

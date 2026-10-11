@@ -18,14 +18,16 @@ export default function LandingPage() {
       {/* Top Navigation */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/25">
-              <Zap className="h-6 w-6 text-slate-950 stroke-[2.5]" />
-            </div>
+          <Link href="/" className="flex items-center gap-3">
+            <img
+              src="/images/crewzen-logo.png"
+              alt="Crewzen Logo"
+              className="h-10 w-auto object-contain rounded-xl"
+            />
             <span className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-              Work<span className="text-emerald-400">Orbit</span>
+              Crew<span className="text-emerald-400">zen</span>
             </span>
-          </div>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
             <a href="#features" className="hover:text-emerald-400 transition-colors">Features</a>
@@ -62,13 +64,13 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-8">
             <Sparkles className="h-3.5 w-3.5" />
-            WorkOrbit SaaS 2.0 • Ultra-Fast HR Automation
+            Crewzen • Workforce Management Platform
           </div>
 
           <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-[1.15]">
-            Manage Workforce, Payroll & Hiring in{" "}
+            Manage Workforce, Payroll & Hiring with{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-              One Unified Orbit
+              Crewzen Intelligence
             </span>
           </h1>
 
@@ -271,10 +273,13 @@ export default function LandingPage() {
       <footer className="mt-auto border-t border-slate-800/80 bg-slate-950 py-12">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-slate-950 text-xs">
-              WO
-            </div>
-            <span>© 2026 WorkOrbit Inc. All rights reserved.</span>
+            <img
+              src="/images/crewzen-logo.png"
+              alt="Crewzen Logo"
+              className="h-8 w-auto object-contain rounded-md"
+            />
+            <span className="font-semibold text-white">Crewzen</span>
+            <span>© 2026 Crewzen Inc. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
             <Link href="/careers" className="hover:text-slate-300 transition-colors">Careers</Link>

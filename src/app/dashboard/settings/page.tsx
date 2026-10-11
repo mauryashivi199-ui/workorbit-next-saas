@@ -5,8 +5,8 @@ import { Settings, Shield, Bell, Key, Globe, Database, Save, CheckCircle2 } from
 
 export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
-  const [companyName, setCompanyName] = useState("WorkOrbit Technologies");
-  const [contactEmail, setContactEmail] = useState("info@workorbit.io");
+  const [companyName, setCompanyName] = useState("Crewzen Technologies");
+  const [contactEmail, setContactEmail] = useState("info@crewzen.io");
   const [workDays, setWorkDays] = useState(["Mon", "Tue", "Wed", "Thu", "Fri"]);
 
   const handleSave = (e: React.FormEvent) => {

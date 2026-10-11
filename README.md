@@ -1,7 +1,9 @@
 <div align="center">
 
-# ⚡ WorkOrbit SaaS 2.0
-### *Next-Gen Enterprise Workforce Automation & HRMS Platform*
+<img src="./public/images/crewzen-logo.png" alt="Crewzen Logo" width="380" />
+
+# ⚡ Crewzen
+### *Workforce Management Platform*
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)

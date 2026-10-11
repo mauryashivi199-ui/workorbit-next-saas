@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WorkOrbit SaaS - Enterprise HR & Workforce Automation",
-  description: "Next-Gen SaaS HRMS platform for automated payroll, intelligent attendance, ATS recruitment, and dynamic organization management.",
+  title: "Crewzen - Workforce Management Platform",
+  description: "Next-Gen Enterprise Workforce Management Platform for automated payroll, intelligent attendance, ATS recruitment, and dynamic organization management.",
 };
 
 export default function RootLayout({

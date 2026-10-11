@@ -171,11 +171,13 @@ export default function PayrollPage() {
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-3xl p-8 shadow-2xl relative">
             <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-slate-950 text-xs">
-                  WO
-                </div>
-                <h3 className="text-lg font-bold text-white">WorkOrbit Payslip</h3>
+              <div className="flex items-center gap-2.5">
+                <img
+                  src="/images/crewzen-logo.png"
+                  alt="Crewzen Logo"
+                  className="h-8 w-auto object-contain rounded-md"
+                />
+                <h3 className="text-lg font-bold text-white">Crew<span className="text-emerald-400">zen</span> Payslip</h3>
               </div>
               <button onClick={() => setSelectedPayslip(null)} className="text-slate-400 hover:text-white">✕</button>
             </div>
