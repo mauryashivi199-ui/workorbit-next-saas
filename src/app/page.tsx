@@ -110,6 +110,123 @@ export default function LandingPage() {
               <div className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Enterprise Security</div>
             </div>
           </div>
+
+          {/* Interactive Live Platform Preview Showcase */}
+          <div className="mt-16 relative max-w-5xl mx-auto rounded-3xl p-3 bg-gradient-to-b from-emerald-500/30 via-slate-800/50 to-transparent shadow-2xl">
+            <div className="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+              {/* Browser window chrome */}
+              <div className="h-10 bg-slate-900/90 border-b border-slate-800 px-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+                  <span className="text-[11px] text-slate-400 font-mono ml-2">https://crewzen.saas/dashboard</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    Live Reactive App
+                  </span>
+                </div>
+              </div>
+
+              {/* Realistic App Screenshot Mockup */}
+              <div className="p-6 md:p-8 bg-slate-950/90 text-left space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/crewzen-logo.png"
+                      alt="Crewzen"
+                      className="h-10 w-auto object-contain"
+                    />
+                    <div>
+                      <h4 className="text-sm font-bold text-white">Executive HRMS Suite</h4>
+                      <p className="text-xs text-slate-400">Welcome, Shivi Maurya (Super Admin)</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href="/dashboard"
+                      className="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-colors"
+                    >
+                      Open Live Demo ↗
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Dashboard Stats Cards Preview */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Total Workforce</div>
+                    <div className="text-2xl font-bold text-white mt-1">128</div>
+                    <div className="text-[11px] text-emerald-400 mt-1">↑ 12% this month</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Today's Attendance</div>
+                    <div className="text-2xl font-bold text-emerald-400 mt-1">96.8%</div>
+                    <div className="text-[11px] text-slate-400 mt-1">124 Present • 4 On Leave</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Payroll Disbursed</div>
+                    <div className="text-2xl font-bold text-teal-300 mt-1">₹42.8L</div>
+                    <div className="text-[11px] text-teal-400 mt-1">Automated 1-Click Run</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Open Positions</div>
+                    <div className="text-2xl font-bold text-cyan-400 mt-1">6 Jobs</div>
+                    <div className="text-[11px] text-slate-400 mt-1">ATS Pipeline Active</div>
+                  </div>
+                </div>
+
+                {/* Split preview: Attendance Register + ATS Pipeline */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                  <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-bold text-white">Punch Attendance & Geolocation</span>
+                      <span className="text-[10px] text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10">Active</span>
+                    </div>
+                    <div className="space-y-2 text-xs">
+                      <div className="flex items-center justify-between p-2 rounded bg-slate-950 border border-slate-850">
+                        <span className="text-slate-300">Shivi Maurya (Tech Lead)</span>
+                        <span className="text-emerald-400 font-mono">09:15 AM • IN</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 rounded bg-slate-950 border border-slate-850">
+                        <span className="text-slate-300">Ananya Verma (Product)</span>
+                        <span className="text-emerald-400 font-mono">09:28 AM • IN</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 rounded bg-slate-950 border border-slate-850">
+                        <span className="text-slate-300">Rohan Mehta (DevOps)</span>
+                        <span className="text-emerald-400 font-mono">09:42 AM • IN</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-bold text-white">Applicant Tracking System (ATS)</span>
+                      <span className="text-[10px] text-cyan-400 px-2 py-0.5 rounded bg-cyan-500/10">Pipeline</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 text-[11px]">
+                      <div className="p-2 rounded bg-slate-950 border border-slate-850">
+                        <div className="text-slate-400 text-[10px]">APPLIED</div>
+                        <div className="font-bold text-white mt-1">24 Profiles</div>
+                        <div className="text-[9px] text-emerald-400 mt-0.5">Resume parsed</div>
+                      </div>
+                      <div className="p-2 rounded bg-slate-950 border border-slate-850">
+                        <div className="text-slate-400 text-[10px]">INTERVIEW</div>
+                        <div className="font-bold text-white mt-1">8 Profiles</div>
+                        <div className="text-[9px] text-cyan-400 mt-0.5">Round 2 scheduled</div>
+                      </div>
+                      <div className="p-2 rounded bg-slate-950 border border-slate-850">
+                        <div className="text-slate-400 text-[10px]">OFFERED</div>
+                        <div className="font-bold text-emerald-400 mt-1">3 Profiles</div>
+                        <div className="text-[9px] text-slate-400 mt-0.5">Offer sent</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
