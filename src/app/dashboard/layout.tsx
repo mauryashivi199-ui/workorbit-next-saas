@@ -84,11 +84,11 @@ export default function DashboardLayout({
         }`}
       >
         <div className="h-18 px-6 flex items-center justify-between border-b border-slate-800/80 py-4">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center py-1">
             <img
               src="/images/crewzen-logo.png"
               alt="Crewzen Workforce Management Platform"
-              className="h-10 w-auto max-w-[170px] object-contain rounded-md"
+              className="h-14 w-auto max-w-[210px] object-contain rounded-lg"
             />
           </Link>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-slate-400 hover:text-white">

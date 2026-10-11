@@ -63,13 +63,13 @@ export default function CareersPage() {
       {/* Careers Header */}
       <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-3">
             <img
               src="/images/crewzen-logo.png"
               alt="Crewzen Workforce Management Platform"
-              className="h-10 w-auto max-w-[170px] object-contain rounded-lg"
+              className="h-14 w-auto max-w-[210px] object-contain rounded-lg"
             />
-            <span className="text-xs uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+            <span className="text-xs uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
               Careers
             </span>
           </Link>

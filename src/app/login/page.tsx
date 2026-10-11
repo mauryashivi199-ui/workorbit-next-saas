@@ -60,11 +60,11 @@ export default function AuthPage() {
 
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center justify-center mb-4">
+          <Link href="/" className="inline-flex items-center justify-center mb-6">
             <img
               src="/images/crewzen-logo.png"
               alt="Crewzen Workforce Management Platform"
-              className="h-14 w-auto max-w-[220px] object-contain rounded-xl shadow-lg shadow-emerald-500/10"
+              className="h-20 w-auto max-w-[280px] object-contain rounded-xl shadow-lg shadow-emerald-500/10"
             />
           </Link>
           <h2 className="text-2xl font-bold tracking-tight text-white">
