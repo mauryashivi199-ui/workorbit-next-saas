@@ -27,6 +27,7 @@ import {
   Building2,
   ChevronDown,
   Building,
+  TrendingUp,
 } from "lucide-react";
 
 interface NavGroup {
