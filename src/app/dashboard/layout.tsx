@@ -20,27 +20,80 @@ import {
   Search,
   UserCheck,
   FileText,
+  Calendar,
+  Award,
+  Megaphone,
+  Sun,
+  Building2,
+  ChevronDown,
+  Building,
 } from "lucide-react";
 
-// Admin gets full enterprise modules
-const ADMIN_NAV = [
-  { name: "Executive Hub", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Employees Directory", href: "/dashboard/employees", icon: Users },
-  { name: "Org Chart Hierarchy", href: "/dashboard/org-chart", icon: GitFork },
-  { name: "Attendance & Punch", href: "/dashboard/attendance", icon: Clock },
-  { name: "Leave Approvals", href: "/dashboard/leaves", icon: CalendarDays },
-  { name: "Payroll & Payslips", href: "/dashboard/payroll", icon: Banknote },
-  { name: "ATS Recruitment", href: "/dashboard/recruitment", icon: Briefcase },
-  { name: "Settings & RBAC", href: "/dashboard/settings", icon: Settings },
+interface NavGroup {
+  category: string;
+  items: {
+    name: string;
+    href: string;
+    icon: any;
+  }[];
+}
+
+const ADMIN_NAV_GROUPS: NavGroup[] = [
+  {
+    category: "Overview",
+    items: [
+      { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+      { name: "Calendar", href: "/dashboard/calendar", icon: Calendar },
+    ],
+  },
+  {
+    category: "Workforce Management",
+    items: [
+      { name: "Employees", href: "/dashboard/employees", icon: Users },
+      { name: "Organization Chart", href: "/dashboard/org-chart", icon: GitFork },
+      { name: "Attendance Records", href: "/dashboard/attendance", icon: Clock },
+      { name: "Leave Management", href: "/dashboard/leaves", icon: CalendarDays },
+    ],
+  },
+  {
+    category: "Organization Structure",
+    items: [
+      { name: "Departments", href: "/dashboard/departments", icon: Building2 },
+      { name: "Holidays Calendar", href: "/dashboard/holidays", icon: Sun },
+      { name: "Announcements", href: "/dashboard/announcements", icon: Megaphone },
+    ],
+  },
+  {
+    category: "Talent & Growth",
+    items: [
+      { name: "Recruitment (ATS)", href: "/dashboard/recruitment", icon: Briefcase },
+      { name: "Awards & Recognition", href: "/dashboard/awards", icon: Award },
+      { name: "Promotions", href: "/dashboard/promotions", icon: TrendingUp },
+    ],
+  },
+  {
+    category: "Finance & Assets",
+    items: [
+      { name: "Payroll Management", href: "/dashboard/payroll", icon: Banknote },
+      { name: "Settings & RBAC", href: "/dashboard/settings", icon: Settings },
+    ],
+  },
 ];
 
-// Employee only gets Self-Service Portal
-const EMPLOYEE_NAV = [
-  { name: "My Workplace Hub", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Punch & Attendance", href: "/dashboard/attendance", icon: Clock },
-  { name: "My Leave Requests", href: "/dashboard/leaves", icon: CalendarDays },
-  { name: "My Payslips", href: "/dashboard/payroll", icon: Banknote },
-  { name: "Company Org Chart", href: "/dashboard/org-chart", icon: GitFork },
+const EMPLOYEE_NAV_GROUPS: NavGroup[] = [
+  {
+    category: "My Workplace",
+    items: [
+      { name: "My Workplace Hub", href: "/dashboard", icon: LayoutDashboard },
+      { name: "Calendar", href: "/dashboard/calendar", icon: Calendar },
+      { name: "Punch & Attendance", href: "/dashboard/attendance", icon: Clock },
+      { name: "My Leaves", href: "/dashboard/leaves", icon: CalendarDays },
+      { name: "My Payslips", href: "/dashboard/payroll", icon: Banknote },
+      { name: "Org Chart", href: "/dashboard/org-chart", icon: GitFork },
+      { name: "Announcements", href: "/dashboard/announcements", icon: Megaphone },
+      { name: "Company Holidays", href: "/dashboard/holidays", icon: Sun },
+    ],
+  },
 ];
 
 export default function DashboardLayout({
@@ -65,7 +118,7 @@ export default function DashboardLayout({
     }
   }, []);
 
-  const navItems = user.role === "SUPER_ADMIN" ? ADMIN_NAV : EMPLOYEE_NAV;
+  const navGroups = user.role === "SUPER_ADMIN" ? ADMIN_NAV_GROUPS : EMPLOYEE_NAV_GROUPS;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex">
@@ -79,11 +132,11 @@ export default function DashboardLayout({
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-slate-950/95 border-r border-slate-800/80 flex flex-col transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-slate-950 border-r border-slate-800/80 flex flex-col transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="h-18 px-6 flex items-center justify-between border-b border-slate-800/80 py-4">
+        <div className="h-20 px-6 flex items-center justify-between border-b border-slate-800/80 py-4">
           <Link href="/" className="flex items-center py-1">
             <img
               src="/images/crewzen-logo.png"
@@ -96,30 +149,34 @@ export default function DashboardLayout({
           </button>
         </div>
 
-        {/* Dynamic Navigation according to Role */}
-        <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
-          <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">
-            {user.role === "SUPER_ADMIN" ? "Executive Controls" : "Employee Self-Service"}
-          </div>
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  active
-                    ? "bg-emerald-500/15 text-emerald-400 font-semibold border border-emerald-500/30"
-                    : "text-slate-400 hover:bg-slate-900 hover:text-slate-200"
-                }`}
-              >
-                <Icon className={`h-4 w-4 ${active ? "text-emerald-400" : "text-slate-400"}`} />
-                <span>{item.name}</span>
-              </Link>
-            );
-          })}
+        {/* Dynamic Navigation with Categories according to Role */}
+        <nav className="flex-1 px-3 py-4 space-y-5 overflow-y-auto">
+          {navGroups.map((group) => (
+            <div key={group.category} className="space-y-1">
+              <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+                {group.category}
+              </div>
+              {group.items.map((item) => {
+                const Icon = item.icon;
+                const active = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setSidebarOpen(false)}
+                    className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                      active
+                        ? "bg-emerald-500/15 text-emerald-400 font-semibold border border-emerald-500/30"
+                        : "text-slate-400 hover:bg-slate-900 hover:text-slate-200"
+                    }`}
+                  >
+                    <Icon className={`h-4 w-4 ${active ? "text-emerald-400" : "text-slate-400"}`} />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
         </nav>
 
         {/* Current User Pill & Switch Role */}
@@ -128,7 +185,7 @@ export default function DashboardLayout({
             <div className={`h-9 w-9 rounded-lg flex items-center justify-center font-bold text-sm ${
               user.role === "SUPER_ADMIN" ? "bg-emerald-500/20 text-emerald-400" : "bg-cyan-500/20 text-cyan-400"
             }`}>
-              {user.name ? user.name[0] : "U"}
+              {user.name ? user.name[0] : "S"}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-semibold text-white truncate">{user.name}</p>

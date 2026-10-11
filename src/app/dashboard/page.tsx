@@ -108,58 +108,107 @@ export default function DynamicDashboard() {
       {isAdmin ? (
         <>
           {/* Admin KPI Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
-              <div className="flex items-center justify-between text-slate-400 mb-3">
-                <span className="text-xs font-semibold uppercase tracking-wider">Total Headcount</span>
-                <div className="h-8 w-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-                  <Users className="h-4 w-4" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-900/40">
+              <div className="flex items-center justify-between text-emerald-400 mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider">Payroll This Month</span>
+                <Banknote className="h-4 w-4" />
+              </div>
+              <div className="text-xl font-extrabold text-white">₹38.4L</div>
+              <div className="text-[10px] text-emerald-400/80 mt-1">1 run scheduled</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-cyan-950/20 border border-cyan-900/40">
+              <div className="flex items-center justify-between text-cyan-400 mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider">Total Employees</span>
+                <Users className="h-4 w-4" />
+              </div>
+              <div className="text-xl font-extrabold text-white">48</div>
+              <div className="text-[10px] text-cyan-400/80 mt-1">+4 this month</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-teal-950/20 border border-teal-900/40">
+              <div className="flex items-center justify-between text-teal-400 mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider">Branches</span>
+                <Building className="h-4 w-4" />
+              </div>
+              <div className="text-xl font-extrabold text-white">3</div>
+              <div className="text-[10px] text-teal-400/80 mt-1">5 departments</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-purple-950/20 border border-purple-900/40">
+              <div className="flex items-center justify-between text-purple-400 mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider">Attendance Rate</span>
+                <Clock className="h-4 w-4" />
+              </div>
+              <div className="text-xl font-extrabold text-white">96.2%</div>
+              <div className="text-[10px] text-purple-400/80 mt-1">44 clocked in</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-amber-950/20 border border-amber-900/40">
+              <div className="flex items-center justify-between text-amber-400 mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider">Pending Leaves</span>
+                <CalendarDays className="h-4 w-4" />
+              </div>
+              <div className="text-xl font-extrabold text-white">1</div>
+              <div className="text-[10px] text-amber-400/80 mt-1">Alex Kumar</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-900/40">
+              <div className="flex items-center justify-between text-rose-400 mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider">Active Jobs</span>
+                <Briefcase className="h-4 w-4" />
+              </div>
+              <div className="text-xl font-extrabold text-white">3</div>
+              <div className="text-[10px] text-rose-400/80 mt-1">18 candidates</div>
+            </div>
+          </div>
+
+          {/* Today's Birthdays & Today's Leave Widgets (Exact match to screenshot 1) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Today's Birthdays */}
+            <div className="p-6 rounded-3xl bg-slate-900/60 border border-slate-800">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    <span>Today's Birthdays</span>
+                    <span className="text-xs">🎉</span>
+                  </h3>
+                  <p className="text-xs text-slate-400">Celebrate with your team members</p>
+                </div>
+                <div className="h-8 w-8 rounded-full bg-pink-500/10 text-pink-400 flex items-center justify-center">
+                  <Sparkles className="h-4 w-4" />
                 </div>
               </div>
-              <div className="text-2xl font-bold text-white">48</div>
-              <div className="text-xs text-emerald-400 mt-2 flex items-center gap-1">
-                <TrendingUp className="h-3 w-3" />
-                <span>+4 joined this month</span>
+
+              <div className="py-6 text-center rounded-2xl bg-slate-950/50 border border-slate-850">
+                <div className="text-2xl mb-1">🎂</div>
+                <p className="text-xs font-semibold text-slate-300">Upcoming Birthday</p>
+                <p className="text-xs text-emerald-400 font-bold mt-1">Ananya Verma • Oct 25</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">Product Experience Lead</p>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
-              <div className="flex items-center justify-between text-slate-400 mb-3">
-                <span className="text-xs font-semibold uppercase tracking-wider">Today Attendance</span>
-                <div className="h-8 w-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
-                  <Clock className="h-4 w-4" />
+            {/* Today's Leave */}
+            <div className="p-6 rounded-3xl bg-slate-900/60 border border-slate-800">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    <span>Today's Leave</span>
+                    <span className="text-xs">🏖️</span>
+                  </h3>
+                  <p className="text-xs text-slate-400">Employees on leave today</p>
+                </div>
+                <div className="h-8 w-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center">
+                  <CalendarDays className="h-4 w-4" />
                 </div>
               </div>
-              <div className="text-2xl font-bold text-white">96.2%</div>
-              <div className="text-xs text-slate-400 mt-2 flex items-center gap-1">
-                <CheckCircle2 className="h-3 w-3 text-emerald-400" />
-                <span>44 Present • 2 On Leave</span>
-              </div>
-            </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
-              <div className="flex items-center justify-between text-slate-400 mb-3">
-                <span className="text-xs font-semibold uppercase tracking-wider">Company Payroll Burn</span>
-                <div className="h-8 w-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center">
-                  <Banknote className="h-4 w-4" />
-                </div>
-              </div>
-              <div className="text-2xl font-bold text-white">₹38,40,000</div>
-              <div className="text-xs text-amber-400 mt-2 flex items-center gap-1">
-                <span>Next cycle in 5 days</span>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
-              <div className="flex items-center justify-between text-slate-400 mb-3">
-                <span className="text-xs font-semibold uppercase tracking-wider">ATS Candidates</span>
-                <div className="h-8 w-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
-                  <Briefcase className="h-4 w-4" />
-                </div>
-              </div>
-              <div className="text-2xl font-bold text-white">18 In Pipeline</div>
-              <div className="text-xs text-purple-400 mt-2 flex items-center gap-1">
-                <span>3 Offers extended</span>
+              <div className="py-6 text-center rounded-2xl bg-slate-950/50 border border-slate-850">
+                <div className="text-2xl mb-1">🌴</div>
+                <p className="text-xs font-semibold text-slate-300">1 Employee On Approved Leave</p>
+                <p className="text-xs text-amber-400 font-bold mt-1">Pooja Sharma • Sick Leave</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">Frontend UI Specialist • Returning Tomorrow</p>
               </div>
             </div>
           </div>
