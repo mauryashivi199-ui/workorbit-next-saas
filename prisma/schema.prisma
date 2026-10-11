@@ -7,42 +7,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum Role {
-  SUPER_ADMIN
-  HR_ADMIN
-  MANAGER
-  EMPLOYEE
-}
-
-enum AttendanceStatus {
-  PRESENT
-  LATE
-  HALF_DAY
-  ABSENT
-  HOLIDAY
-}
-
-enum LeaveStatus {
-  PENDING
-  APPROVED
-  REJECTED
-}
-
-enum CandidateStage {
-  APPLIED
-  SCREENING
-  INTERVIEW
-  OFFERED
-  HIRED
-  REJECTED
-}
-
 model User {
   id           String    @id @default(cuid())
   email        String    @unique
   password     String
   name         String
-  role         Role      @default(EMPLOYEE)
+  role         String    @default("EMPLOYEE") // SUPER_ADMIN, HR_ADMIN, MANAGER, EMPLOYEE
   avatar       String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -108,7 +78,7 @@ model AttendanceRecord {
   clockIn      DateTime?
   clockOut     DateTime?
   totalHours   Float             @default(0)
-  status       AttendanceStatus  @default(PRESENT)
+  status       String            @default("PRESENT") // PRESENT, LATE, HALF_DAY, ABSENT, HOLIDAY
   ipAddress    String?
   location     String?
 }
@@ -123,7 +93,7 @@ model LeaveApplication {
   endDate      DateTime
   totalDays    Int
   reason       String
-  status       LeaveStatus  @default(PENDING)
+  status       String       @default("PENDING") // PENDING, APPROVED, REJECTED
   approvedBy   String?
   
   createdAt    DateTime     @default(now())
@@ -184,7 +154,7 @@ model Candidate {
   phone          String?
   resumeUrl      String?
   experience     String?
-  stage          CandidateStage  @default(APPLIED)
+  stage          String          @default("APPLIED") // APPLIED, SCREENING, INTERVIEW, OFFERED, HIRED, REJECTED
   rating         Int             @default(3) // 1 to 5
   notes          String?
   appliedAt      DateTime        @default(now())
