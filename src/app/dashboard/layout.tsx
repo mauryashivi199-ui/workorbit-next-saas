@@ -84,22 +84,12 @@ export default function DashboardLayout({
         }`}
       >
         <div className="h-18 px-6 flex items-center justify-between border-b border-slate-800/80 py-4">
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center">
             <img
               src="/images/crewzen-logo.png"
-              alt="Crewzen Logo"
-              className="h-9 w-auto object-contain rounded-lg"
+              alt="Crewzen Workforce Management Platform"
+              className="h-10 w-auto max-w-[170px] object-contain rounded-md"
             />
-            <div>
-              <span className="text-base font-extrabold tracking-tight text-white">Crew<span className="text-emerald-400">zen</span></span>
-              <span className={`text-[9px] ml-1.5 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
-                user.role === "SUPER_ADMIN"
-                  ? "bg-emerald-500/20 text-emerald-400"
-                  : "bg-cyan-500/20 text-cyan-400"
-              }`}>
-                {user.role === "SUPER_ADMIN" ? "ADMIN" : "PORTAL"}
-              </span>
-            </div>
           </Link>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-slate-400 hover:text-white">
             <X className="h-5 w-5" />

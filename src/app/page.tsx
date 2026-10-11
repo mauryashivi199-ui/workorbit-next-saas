@@ -18,15 +18,12 @@ export default function LandingPage() {
       {/* Top Navigation */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center">
             <img
               src="/images/crewzen-logo.png"
-              alt="Crewzen Logo"
-              className="h-10 w-auto object-contain rounded-xl"
+              alt="Crewzen Workforce Management Platform"
+              className="h-12 w-auto max-w-[200px] object-contain rounded-xl"
             />
-            <span className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-              Crew<span className="text-emerald-400">zen</span>
-            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
