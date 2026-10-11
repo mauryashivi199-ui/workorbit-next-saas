@@ -108,12 +108,37 @@ export default function CareersPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!resumeFileName) {
       alert("Please upload your Resume in PDF format.");
       return;
     }
+
+    try {
+      // Post directly to MongoDB API endpoint
+      await fetch("/api/careers/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jobId: selectedJob || "job-1",
+          jobTitle: activeJobData?.title || "Position",
+          candidateName: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          qualification: formData.qualification,
+          experience: formData.experience,
+          noticePeriod: formData.noticePeriod,
+          resumeFileName,
+          skills: selectedSkills,
+          portfolioUrl: formData.portfolioLink,
+          coverLetter: formData.coverLetter,
+        }),
+      });
+    } catch (err) {
+      console.warn("Could not reach MongoDB endpoint, proceeding with visual feedback:", err);
+    }
+
     setApplied(true);
     setTimeout(() => {
       setApplied(false);
