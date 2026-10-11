@@ -104,6 +104,7 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [user, setUser] = useState<{ name: string; role: string; email: string }>({
     name: "Shivi Maurya (Admin)",
     role: "SUPER_ADMIN",
@@ -234,10 +235,80 @@ export default function DashboardLayout({
               {user.role === "SUPER_ADMIN" ? "👑 Admin Mode" : "👤 Employee Mode"}
             </span>
 
-            <button className="h-9 w-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white relative">
-              <Bell className="h-4 w-4" />
-              <span className="h-2 w-2 rounded-full bg-emerald-400 absolute top-2 right-2 ring-2 ring-slate-950" />
-            </button>
+            {/* Notification Bell with Interactive Dropdown Popup */}
+            <div className="relative">
+              <button
+                onClick={() => setNotificationsOpen(!notificationsOpen)}
+                className="h-10 w-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-850 active:scale-95 transition-all relative"
+                aria-label="Notifications"
+                title="Notifications"
+              >
+                <Bell className="h-4.5 w-4.5 text-emerald-400" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 absolute top-2 right-2 ring-2 ring-slate-950 animate-pulse" />
+              </button>
+
+              {/* Notification Popover Dropdown */}
+              {notificationsOpen && (
+                <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl z-50 p-4 space-y-3">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <Bell className="h-4 w-4 text-emerald-400" />
+                      <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+                        Crewzen Notifications (3 New)
+                      </h4>
+                    </div>
+                    <button
+                      onClick={() => setNotificationsOpen(false)}
+                      className="text-slate-400 hover:text-white text-xs p-1"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div className="space-y-2.5 max-h-72 overflow-y-auto pr-1">
+                    <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-emerald-400 uppercase">Leave Approved</span>
+                        <span className="text-[10px] text-slate-500">10m ago</span>
+                      </div>
+                      <p className="text-xs text-slate-200">
+                        Pooja Sharma's sick leave request has been approved by HR.
+                      </p>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-cyan-400 uppercase">New Candidate</span>
+                        <span className="text-[10px] text-slate-500">45m ago</span>
+                      </div>
+                      <p className="text-xs text-slate-200">
+                        New application received for Lead Next.js Developer role with auto-extracted skills.
+                      </p>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-amber-400 uppercase">Diwali Bonus</span>
+                        <span className="text-[10px] text-slate-500">2h ago</span>
+                      </div>
+                      <p className="text-xs text-slate-200">
+                        Diwali festive bonus schedule circular has been broadcasted to all branches.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 border-t border-slate-800 text-center">
+                    <Link
+                      href="/dashboard/announcements"
+                      onClick={() => setNotificationsOpen(false)}
+                      className="text-[11px] font-semibold text-emerald-400 hover:underline"
+                    >
+                      View All Circulars & Announcements →
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
 
             <Link
               href="/"
@@ -249,7 +320,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Dynamic Page Content */}
-        <main className="flex-1 p-6 lg:p-8 max-w-7xl mx-auto w-full">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
           {children}
         </main>
       </div>

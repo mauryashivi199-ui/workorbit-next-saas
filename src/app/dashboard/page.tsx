@@ -213,45 +213,92 @@ export default function DynamicDashboard() {
             </div>
           </div>
 
-          {/* Admin Two Column: Stream & Quick HR Controls */}
+          {/* Company Technology Architecture & Growth Ecosystem (Replaces plain text table) */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 p-6 rounded-3xl bg-slate-900/60 border border-slate-800">
-              <div className="flex items-center justify-between mb-6">
+            <div className="lg:col-span-2 p-6 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-800">
                 <div>
-                  <h2 className="text-base font-bold text-white">Company Live Workforce Stream</h2>
-                  <p className="text-xs text-slate-400">Real-time attendance logs & clock punches across branches</p>
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-emerald-400" />
+                    <h2 className="text-base font-bold text-white">Engineering Architecture &amp; Team Growth Radar</h2>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Real-time tech stack orchestration, team velocities &amp; enterprise microservices
+                  </p>
                 </div>
-                <Link href="/dashboard/attendance" className="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1">
-                  <span>View All Logs</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
+                <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 self-start sm:self-center">
+                  99.99% Cloud Health
+                </span>
               </div>
 
+              {/* Interactive Visual Tech Stack & Team Node Diagram */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-4">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                  <span>Core Tech Stack Deployment</span>
+                  <span className="text-emerald-400 text-[11px] font-mono">Next.js 14 • Node.js • Prisma • Postgres</span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                  <div className="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 hover:border-emerald-400 transition-colors">
+                    <div className="text-xs font-bold text-emerald-400">Frontend Apps</div>
+                    <div className="text-[11px] text-white font-semibold mt-1">Next.js 14 App Router</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">Tailwind CSS + Lucide</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-900 border border-cyan-500/30 hover:border-cyan-400 transition-colors">
+                    <div className="text-xs font-bold text-cyan-400">Database Engine</div>
+                    <div className="text-[11px] text-white font-semibold mt-1">PostgreSQL + Prisma</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">Connection Pooling</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-900 border border-purple-500/30 hover:border-purple-400 transition-colors">
+                    <div className="text-xs font-bold text-purple-400">API &amp; Auth</div>
+                    <div className="text-[11px] text-white font-semibold mt-1">JWT + RBAC Security</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">Role Guard Middleware</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-900 border border-amber-500/30 hover:border-amber-400 transition-colors">
+                    <div className="text-xs font-bold text-amber-400">Cloud Infrastructure</div>
+                    <div className="text-[11px] text-white font-semibold mt-1">Docker &amp; CI/CD</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">Automated Workflows</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Department Velocities & Growth Progress Bars */}
               <div className="space-y-3">
-                {[
-                  { name: "Shivi Maurya", role: "Lead Software Architect", status: "Clocked In", time: "09:02 AM", location: "Greater Noida HQ", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
-                  { name: "Shivangi Maurya", role: "HR Operations Director", status: "Clocked In", time: "09:14 AM", location: "Greater Noida HQ", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
-                  { name: "Alex Kumar", role: "Senior Full Stack Engineer", status: "Remote Punch", time: "09:30 AM", location: "Remote (103.21.x.x)", badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20" },
-                  { name: "Pooja Sharma", role: "Frontend UI Specialist", status: "Approved Leave", time: "Full Day", location: "Approved by HR", badge: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
-                ].map((item, idx) => (
-                  <div key={idx} className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-lg bg-slate-800 text-slate-300 font-bold flex items-center justify-center text-xs">
-                        {item.name[0]}
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-semibold text-white">{item.name}</h3>
-                        <p className="text-[11px] text-slate-400">{item.role} • {item.location}</p>
-                      </div>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  Sprint Velocity &amp; Team Output (October 2026)
+                </h3>
+
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex justify-between text-xs font-medium mb-1">
+                      <span className="text-slate-300">Engineering &amp; Cloud Platform (Shivi Maurya)</span>
+                      <span className="text-emerald-400 font-bold">94% Target Achieved</span>
                     </div>
-                    <div className="text-right">
-                      <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${item.badge}`}>
-                        {item.status}
-                      </span>
-                      <div className="text-[10px] text-slate-400 mt-1">{item.time}</div>
+                    <div className="w-full h-2 rounded-full bg-slate-950 overflow-hidden border border-slate-800">
+                      <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full" style={{ width: "94%" }} />
                     </div>
                   </div>
-                ))}
+
+                  <div>
+                    <div className="flex justify-between text-xs font-medium mb-1">
+                      <span className="text-slate-300">Product UX &amp; System Workflows (Ananya Verma)</span>
+                      <span className="text-cyan-400 font-bold">88% Target Achieved</span>
+                    </div>
+                    <div className="w-full h-2 rounded-full bg-slate-950 overflow-hidden border border-slate-800">
+                      <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full" style={{ width: "88%" }} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between text-xs font-medium mb-1">
+                      <span className="text-slate-300">Talent Acquisition &amp; ATS Pipeline (Shivangi Maurya)</span>
+                      <span className="text-purple-400 font-bold">92% Hiring Target</span>
+                    </div>
+                    <div className="w-full h-2 rounded-full bg-slate-950 overflow-hidden border border-slate-800">
+                      <div className="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full" style={{ width: "92%" }} />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 

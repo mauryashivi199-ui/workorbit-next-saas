@@ -130,70 +130,72 @@ export default function CalendarPage() {
         </div>
       </div>
 
-      {/* Calendar Grid (October 2026 starts on Thursday) */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4 shadow-xl">
-        {/* Days of week */}
-        <div className="grid grid-cols-7 gap-2 text-center text-xs font-bold text-slate-400 pb-3 border-b border-slate-800 uppercase tracking-wider">
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
-        </div>
+      {/* Calendar Grid (October 2026 starts on Thursday) - Fully responsive with horizontal scroll on small mobile */}
+      <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4 shadow-xl overflow-x-auto">
+        <div className="min-w-[620px]">
+          {/* Days of week */}
+          <div className="grid grid-cols-7 gap-2 text-center text-xs font-bold text-slate-400 pb-3 border-b border-slate-800 uppercase tracking-wider">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
 
-        {/* Calendar days grid */}
-        <div className="grid grid-cols-7 gap-2 pt-3">
-          {/* Offset 4 days for Thu start */}
-          <div className="min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">27</div>
-          <div className="min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">28</div>
-          <div className="min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">29</div>
-          <div className="min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">30</div>
+          {/* Calendar days grid */}
+          <div className="grid grid-cols-7 gap-2 pt-3">
+            {/* Offset 4 days for Thu start */}
+            <div className="min-h-[80px] sm:min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">27</div>
+            <div className="min-h-[80px] sm:min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">28</div>
+            <div className="min-h-[80px] sm:min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">29</div>
+            <div className="min-h-[80px] sm:min-h-[90px] p-1.5 rounded-xl bg-slate-950/30 text-slate-600 text-xs">30</div>
 
-          {days.map((day) => {
-            const dayStr = `2026-10-${day < 10 ? `0${day}` : day}`;
-            const matchedEvents = filteredEvents.filter((e) => e.date === dayStr);
-            const isToday = day === 11;
+            {days.map((day) => {
+              const dayStr = `2026-10-${day < 10 ? `0${day}` : day}`;
+              const matchedEvents = filteredEvents.filter((e) => e.date === dayStr);
+              const isToday = day === 11;
 
-            return (
-              <div
-                key={day}
-                className={`min-h-[90px] p-2 rounded-xl border transition-all flex flex-col justify-between ${
-                  isToday
-                    ? "bg-emerald-500/10 border-emerald-500/50"
-                    : "bg-slate-950/60 border-slate-800/80 hover:border-slate-700"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`text-xs font-bold ${
-                      isToday
-                        ? "h-5 w-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-extrabold"
-                        : "text-slate-300"
-                    }`}
-                  >
-                    {day}
-                  </span>
-                  {matchedEvents.length > 0 && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  )}
-                </div>
-
-                <div className="space-y-1 mt-1">
-                  {matchedEvents.map((ev) => (
-                    <div
-                      key={ev.id}
-                      className={`text-[10px] p-1 rounded-md border truncate font-medium ${ev.badgeColor}`}
-                      title={ev.title}
+              return (
+                <div
+                  key={day}
+                  className={`min-h-[80px] sm:min-h-[90px] p-2 rounded-xl border transition-all flex flex-col justify-between ${
+                    isToday
+                      ? "bg-emerald-500/10 border-emerald-500/50"
+                      : "bg-slate-950/60 border-slate-800/80 hover:border-slate-700"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`text-xs font-bold ${
+                        isToday
+                          ? "h-5 w-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-extrabold"
+                          : "text-slate-300"
+                      }`}
                     >
-                      {ev.title}
-                    </div>
-                  ))}
+                      {day}
+                    </span>
+                    {matchedEvents.length > 0 && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    )}
+                  </div>
+
+                  <div className="space-y-1 mt-1">
+                    {matchedEvents.map((ev) => (
+                      <div
+                        key={ev.id}
+                        className={`text-[9px] sm:text-[10px] p-1 rounded-md border truncate font-medium ${ev.badgeColor}`}
+                        title={ev.title}
+                      >
+                        {ev.title}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 
