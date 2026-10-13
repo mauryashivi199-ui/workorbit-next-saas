@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Briefcase, Plus, UserCheck, Star, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
 
 interface CandidateCard {
@@ -51,6 +51,32 @@ const STAGES: Array<CandidateCard["stage"]> = ["APPLIED", "SCREENING", "INTERVIE
 
 export default function RecruitmentKanbanPage() {
   const [candidates, setCandidates] = useState<CandidateCard[]>(INITIAL_CANDIDATES);
+
+  // Fetch real candidates submitted via /careers and MongoDB
+  useEffect(() => {
+    fetch("/api/careers/apply")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.applications && data.applications.length > 0) {
+          const liveItems: CandidateCard[] = data.applications.map((app: any) => ({
+            id: app._id || app.id,
+            name: app.candidateName,
+            role: app.jobTitle,
+            experience: app.experience || "2 Years",
+            stage: (app.stage as CandidateCard["stage"]) || "APPLIED",
+            rating: app.rating || 4,
+          }));
+
+          // Merge live candidates with initial demo items
+          setCandidates((prev) => {
+            const existingIds = new Set(prev.map((c) => c.id));
+            const newEntries = liveItems.filter((item) => !existingIds.has(item.id));
+            return [...newEntries, ...prev];
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const moveCandidate = (id: string, nextStage: CandidateCard["stage"]) => {
     setCandidates(
