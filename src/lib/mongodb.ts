@@ -25,12 +25,20 @@ export async function connectToDatabase() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 10000,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((m) => {
-      console.log("Connected to MongoDB successfully!");
-      return m;
-    });
+    cached.promise = mongoose
+      .connect(MONGODB_URI, opts)
+      .then((m) => {
+        console.log("Connected to MongoDB Atlas successfully!");
+        return m;
+      })
+      .catch((err) => {
+        console.warn("MongoDB connection notice (working in local responsive mode):", err.message);
+        throw err;
+      });
   }
 
   try {
