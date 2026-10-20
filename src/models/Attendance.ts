@@ -9,6 +9,11 @@ export interface IAttendance extends Document {
   status: "PRESENT" | "HALF_DAY" | "LATE" | "ON_LEAVE";
   ipAddress?: string;
   location?: string;
+  latitude?: number;
+  longitude?: number;
+  distanceFromOffice?: number;
+  isWithinGeofence?: boolean;
+  selfieImage?: string; // base64 photo capture
   workHours?: number;
 }
 
@@ -26,6 +31,11 @@ const AttendanceSchema = new Schema<IAttendance>(
     },
     ipAddress: { type: String },
     location: { type: String, default: "Greater Noida HQ" },
+    latitude: { type: Number },
+    longitude: { type: Number },
+    distanceFromOffice: { type: Number },
+    isWithinGeofence: { type: Boolean, default: true },
+    selfieImage: { type: String },
     workHours: { type: Number, default: 0 },
   },
   { timestamps: true }

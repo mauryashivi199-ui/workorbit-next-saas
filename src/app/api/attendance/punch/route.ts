@@ -5,7 +5,17 @@ import { Attendance } from "@/models/Attendance";
 export async function POST(req: Request) {
   try {
     await connectToDatabase();
-    const { employeeCode, employeeName, action } = await req.json();
+    const { 
+      employeeCode, 
+      employeeName, 
+      action,
+      latitude,
+      longitude,
+      distanceFromOffice,
+      isWithinGeofence,
+      selfieImage,
+      locationName
+    } = await req.json();
 
     const today = new Date().toISOString().split("T")[0];
     const nowTime = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -19,11 +29,20 @@ export async function POST(req: Request) {
           date: today,
           clockInTime: nowTime,
           status: "PRESENT",
-          location: "Greater Noida HQ (Web Punch)",
+          location: locationName || "Greater Noida HQ (Geo Verified)",
+          latitude,
+          longitude,
+          distanceFromOffice,
+          isWithinGeofence,
+          selfieImage,
         },
         { upsert: true, new: true }
       );
-      return NextResponse.json({ success: true, record, message: `Punched IN at ${nowTime}` });
+      return NextResponse.json({ 
+        success: true, 
+        record, 
+        message: `Punched IN at ${nowTime} ${isWithinGeofence ? '(Within Office Radius)' : '(Remote Radius Logged)'}` 
+      });
     } else {
       const record = await Attendance.findOneAndUpdate(
         { employeeCode, date: today },
