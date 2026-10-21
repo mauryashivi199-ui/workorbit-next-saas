@@ -43,6 +43,12 @@ const DEFAULT_HQ = {
 };
 
 export default function AttendancePage() {
+  const [currentUser, setCurrentUser] = useState<{ name: string; role: string; employeeCode: string }>({
+    name: "Shivi Maurya",
+    role: "SUPER_ADMIN",
+    employeeCode: "WO-001",
+  });
+
   const [punched, setPunched] = useState(false);
   const [punchTime, setPunchTime] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -64,10 +70,28 @@ export default function AttendancePage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
+  // Read current user from localStorage
+  useEffect(() => {
+    const raw = localStorage.getItem("workorbit_user");
+    if (raw) {
+      try {
+        const u = JSON.parse(raw);
+        setCurrentUser({
+          name: u.name || "Alex Kumar",
+          role: u.role || "EMPLOYEE",
+          employeeCode: u.employeeCode || (u.role === "SUPER_ADMIN" ? "WO-001" : "WO-002"),
+        });
+      } catch (e) {}
+    }
+  }, []);
+
+  const isAdminOrHR = currentUser.role === "SUPER_ADMIN" || currentUser.role === "HR";
+
   // Attendance Records
   const [records, setRecords] = useState<any[]>([
     {
       id: "att-01",
+      employeeCode: "WO-001",
       employee: "Shivi Maurya (WO-001)",
       date: "Today",
       clockIn: "09:02 AM",
@@ -80,6 +104,7 @@ export default function AttendancePage() {
     },
     {
       id: "att-02",
+      employeeCode: "WO-002",
       employee: "Alex Kumar (WO-002)",
       date: "Today",
       clockIn: "09:14 AM",
@@ -92,6 +117,7 @@ export default function AttendancePage() {
     },
     {
       id: "att-03",
+      employeeCode: "WO-003",
       employee: "Pooja Sharma (WO-003)",
       date: "Today",
       clockIn: "--",
@@ -115,6 +141,7 @@ export default function AttendancePage() {
       if (data.success && data.records && data.records.length > 0) {
         const mapped = data.records.map((r: any) => ({
           id: r._id,
+          employeeCode: r.employeeCode,
           employee: `${r.employeeName} (${r.employeeCode})`,
           date: r.date,
           clockIn: r.clockInTime,
@@ -238,8 +265,8 @@ export default function AttendancePage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          employeeCode: "WO-001",
-          employeeName: "Shivi Maurya",
+          employeeCode: currentUser.employeeCode || "WO-001",
+          employeeName: currentUser.name || "Shivi Maurya",
           action: "IN",
           latitude: userLocation?.lat,
           longitude: userLocation?.lng,
@@ -429,14 +456,27 @@ export default function AttendancePage() {
 
       {/* Attendance Register Table */}
       <div className="rounded-3xl bg-slate-900/60 border border-slate-800 overflow-hidden shadow-xl">
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-base font-black text-white">Daily Biometric Punch Register</h2>
-            <p className="text-xs text-slate-400 mt-0.5">Includes selfie proof and geofence coordinates logged into MongoDB</p>
+            <div className="flex items-center gap-2">
+              <h2 className="text-base font-black text-white">
+                {isAdminOrHR ? "Company Biometric Punch Register" : "My Personal Attendance Record"}
+              </h2>
+              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                isAdminOrHR ? "bg-purple-500/10 text-purple-400 border border-purple-500/20" : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+              }`}>
+                {isAdminOrHR ? "Admin View (All Employees)" : "Private View (Protected)"}
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 mt-0.5">
+              {isAdminOrHR 
+                ? "Full executive log of company punches, GPS verification and selfies recorded in MongoDB" 
+                : "Only your own attendance and selfie history is visible to you for privacy compliance."}
+            </p>
           </div>
           <button
             onClick={fetchRecords}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors self-start sm:self-center"
             title="Refresh records"
           >
             <RefreshCw className="h-4 w-4" />
@@ -457,7 +497,17 @@ export default function AttendancePage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60">
-              {records.map((rec) => (
+              {records
+                .filter((rec) => {
+                  // If Admin/HR: show all records
+                  if (isAdminOrHR) return true;
+                  // If Employee: show only their own records matching employeeCode or name
+                  return (
+                    rec.employeeCode === currentUser.employeeCode ||
+                    rec.employee.toLowerCase().includes(currentUser.name.toLowerCase().split(" ")[0])
+                  );
+                })
+                .map((rec) => (
                 <tr key={rec.id} className="hover:bg-slate-850/50 transition-colors">
                   <td className="py-4 px-6 font-bold text-white flex items-center gap-3">
                     <div className="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center text-[10px] font-extrabold text-indigo-400 border border-slate-700">
