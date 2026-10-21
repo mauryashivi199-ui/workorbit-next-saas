@@ -87,47 +87,8 @@ export default function AttendancePage() {
 
   const isAdminOrHR = currentUser.role === "SUPER_ADMIN" || currentUser.role === "HR";
 
-  // Attendance Records
-  const [records, setRecords] = useState<any[]>([
-    {
-      id: "att-01",
-      employeeCode: "WO-001",
-      employee: "Shivi Maurya (WO-001)",
-      date: "Today",
-      clockIn: "09:02 AM",
-      clockOut: "--",
-      hours: "Running",
-      status: "PRESENT",
-      type: "Face + Geo Verified",
-      distance: "42m from HQ",
-      photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-    },
-    {
-      id: "att-02",
-      employeeCode: "WO-002",
-      employee: "Alex Kumar (WO-002)",
-      date: "Today",
-      clockIn: "09:14 AM",
-      clockOut: "--",
-      hours: "Running",
-      status: "PRESENT",
-      type: "Face + Geo Verified",
-      distance: "110m from HQ",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-    },
-    {
-      id: "att-03",
-      employeeCode: "WO-003",
-      employee: "Pooja Sharma (WO-003)",
-      date: "Today",
-      clockIn: "--",
-      clockOut: "--",
-      hours: "0.0",
-      status: "LEAVE",
-      type: "Casual Leave",
-      distance: "--",
-    },
-  ]);
+  // Attendance Records (empty default, will load real DB records)
+  const [records, setRecords] = useState<any[]>([]);
 
   // Load records from DB on mount
   useEffect(() => {
@@ -143,6 +104,7 @@ export default function AttendancePage() {
           id: r._id,
           employeeCode: r.employeeCode,
           employee: `${r.employeeName} (${r.employeeCode})`,
+          employeeNameOnly: r.employeeName,
           date: r.date,
           clockIn: r.clockInTime,
           clockOut: r.clockOutTime || "--",
@@ -153,6 +115,8 @@ export default function AttendancePage() {
           photo: r.selfieImage || null,
         }));
         setRecords(mapped);
+      } else {
+        setRecords([]);
       }
     } catch (e) {
       console.error("Error fetching attendance records", e);
@@ -501,11 +465,17 @@ export default function AttendancePage() {
                 .filter((rec) => {
                   // If Admin/HR: show all records
                   if (isAdminOrHR) return true;
-                  // If Employee: show only their own records matching employeeCode or name
-                  return (
-                    rec.employeeCode === currentUser.employeeCode ||
-                    rec.employee.toLowerCase().includes(currentUser.name.toLowerCase().split(" ")[0])
-                  );
+                  
+                  // If Employee: strictly match employeeCode OR employeeName
+                  const curCode = (currentUser.employeeCode || "").trim().toLowerCase();
+                  const curName = (currentUser.name || "").trim().toLowerCase();
+                  const recCode = (rec.employeeCode || "").trim().toLowerCase();
+                  const recName = (rec.employeeNameOnly || rec.employee || "").trim().toLowerCase();
+
+                  if (curCode && recCode && curCode === recCode) return true;
+                  if (curName && recName && (recName.includes(curName) || curName.includes(recName))) return true;
+
+                  return false;
                 })
                 .map((rec) => (
                 <tr key={rec.id} className="hover:bg-slate-850/50 transition-colors">
