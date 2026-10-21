@@ -73,34 +73,21 @@ export default function DynamicDashboard() {
           </p>
         </div>
 
-        {/* Web Punch Widget */}
+        {/* Web Punch Widget linking to Face & Geo Biometric */}
         <div className="z-10 flex items-center gap-4 bg-slate-950/80 border border-slate-800 p-3 rounded-2xl">
           <div>
-            <div className="text-[10px] uppercase font-bold text-slate-400">Daily Web Clock Punch</div>
+            <div className="text-[10px] uppercase font-bold text-slate-400">Smart Biometric Terminal</div>
             <div className="text-xs font-semibold text-white mt-0.5">
-              {clockedIn ? `Punched In at ${clockTime}` : "Shift Status: Not Clocked In"}
+              Face Recognition + GPS Radius
             </div>
           </div>
-          <button
-            onClick={toggleClock}
-            className={`px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-md ${
-              clockedIn
-                ? "bg-rose-500/20 text-rose-400 border border-rose-500/30 hover:bg-rose-500/30"
-                : "bg-emerald-400 hover:bg-emerald-300 text-slate-950 shadow-emerald-500/20"
-            }`}
+          <Link
+            href="/dashboard/attendance"
+            className="px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-md bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 shadow-emerald-500/20 active:scale-95"
           >
-            {clockedIn ? (
-              <>
-                <Square className="h-3.5 w-3.5 fill-current" />
-                <span>Punch Out</span>
-              </>
-            ) : (
-              <>
-                <Play className="h-3.5 w-3.5 fill-current" />
-                <span>Punch In Now</span>
-              </>
-            )}
-          </button>
+            <Play className="h-3.5 w-3.5 fill-current" />
+            <span>Face &amp; GPS Punch</span>
+          </Link>
         </div>
       </div>
 
@@ -246,8 +233,8 @@ export default function DynamicDashboard() {
                   </div>
                   <div className="p-3 rounded-xl bg-slate-900 border border-cyan-500/30 hover:border-cyan-400 transition-colors">
                     <div className="text-xs font-bold text-cyan-400">Database Engine</div>
-                    <div className="text-[11px] text-white font-semibold mt-1">PostgreSQL + Prisma</div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">Connection Pooling</div>
+                    <div className="text-[11px] text-white font-semibold mt-1">MongoDB Atlas Cloud</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">Mongoose ODM Replica</div>
                   </div>
                   <div className="p-3 rounded-xl bg-slate-900 border border-purple-500/30 hover:border-purple-400 transition-colors">
                     <div className="text-xs font-bold text-purple-400">API &amp; Auth</div>
