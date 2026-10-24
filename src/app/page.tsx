@@ -314,69 +314,106 @@ export default function LandingPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-xs uppercase font-bold tracking-widest text-emerald-400 mb-3">Transparent Plans</h2>
             <p className="text-3xl md:text-5xl font-bold tracking-tight text-white">Simple, scalable pricing for every stage</p>
+            <p className="text-slate-400 text-sm mt-3">Start with a 14-day free trial on any tier • No credit card required</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Free Plan */}
-            <div className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800 flex flex-col justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {/* Free Trial / Starter */}
+            <div className="p-7 rounded-2xl bg-slate-900/40 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all">
               <div>
-                <h3 className="text-xl font-bold text-white">Starter</h3>
-                <p className="text-slate-400 text-xs mt-1">For small teams getting organized</p>
-                <div className="mt-6 flex items-baseline gap-1">
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">
+                  14-Day Free Trial
+                </span>
+                <h3 className="text-xl font-bold text-white mt-3">Free Trial</h3>
+                <p className="text-slate-400 text-xs mt-1">Experience full features risk-free</p>
+                <div className="mt-5 flex items-baseline gap-1">
                   <span className="text-4xl font-extrabold text-white">₹0</span>
-                  <span className="text-slate-400 text-xs">/ month</span>
+                  <span className="text-slate-400 text-xs">/ 14 days</span>
                 </div>
-                <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Up to 10 Employees</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Web Clock In/Out</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Basic Leave Management</li>
+                <ul className="mt-6 space-y-2.5 text-xs text-slate-300">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Up to 15 Employees</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Face Biometric &amp; GPS Punch</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Basic Leave Management</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> No Credit Card Required</li>
                 </ul>
               </div>
-              <Link href="/dashboard" className="mt-8 block text-center py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 transition-colors">
-                Start Free
+              <Link href="/dashboard" className="mt-7 block text-center py-2.5 rounded-xl font-semibold text-xs bg-slate-800 hover:bg-slate-700 text-white transition-colors">
+                Start Free Trial
               </Link>
             </div>
 
-            {/* Pro Plan */}
-            <div className="p-8 rounded-2xl bg-slate-900/90 border-2 border-emerald-500/80 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-bold text-[11px] uppercase tracking-wider">
+            {/* Starter Plan */}
+            <div className="p-7 rounded-2xl bg-slate-900/40 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all">
+              <div>
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                  Early Teams
+                </span>
+                <h3 className="text-xl font-bold text-white mt-3">Starter</h3>
+                <p className="text-slate-400 text-xs mt-1">For growing startups &amp; small offices</p>
+                <div className="mt-5 flex items-baseline gap-1">
+                  <span className="text-4xl font-extrabold text-white">₹999</span>
+                  <span className="text-slate-400 text-xs">/ month</span>
+                </div>
+                <ul className="mt-6 space-y-2.5 text-xs text-slate-300">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Up to 35 Employees</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Smart Biometric + 500m GPS</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Leave &amp; Shift Management</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Interactive Org Chart</li>
+                </ul>
+              </div>
+              <Link href="/dashboard" className="mt-7 block text-center py-2.5 rounded-xl font-semibold text-xs bg-indigo-600 hover:bg-indigo-500 text-white transition-colors">
+                Choose Starter
+              </Link>
+            </div>
+
+            {/* Growth Pro Plan */}
+            <div className="p-7 rounded-2xl bg-slate-900/90 border-2 border-emerald-500/80 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
                 Most Popular
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Growth Pro</h3>
-                <p className="text-slate-400 text-xs mt-1">Full enterprise HR automation</p>
-                <div className="mt-6 flex items-baseline gap-1">
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  Full Automation
+                </span>
+                <h3 className="text-xl font-bold text-white mt-3">Growth Pro</h3>
+                <p className="text-slate-400 text-xs mt-1">For established companies &amp; tech firms</p>
+                <div className="mt-5 flex items-baseline gap-1">
                   <span className="text-4xl font-extrabold text-emerald-400">₹2,499</span>
                   <span className="text-slate-400 text-xs">/ month</span>
                 </div>
-                <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Up to 100 Employees</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Automated Payroll & Tax Engine</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> ATS Recruitment Pipeline</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Interactive Org Chart</li>
+                <ul className="mt-6 space-y-2.5 text-xs text-slate-300">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Up to 150 Employees</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Automated Payroll &amp; Tax Engine</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Full ATS Recruitment Pipeline</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Priority WhatsApp &amp; Email Support</li>
                 </ul>
               </div>
-              <Link href="/dashboard" className="mt-8 block text-center py-3 rounded-xl font-semibold text-sm bg-emerald-400 hover:bg-emerald-300 text-slate-950 transition-colors shadow-lg shadow-emerald-500/20">
+              <Link href="/dashboard" className="mt-7 block text-center py-2.5 rounded-xl font-black text-xs bg-emerald-400 hover:bg-emerald-300 text-slate-950 transition-colors shadow-lg shadow-emerald-500/20">
                 Upgrade to Pro
               </Link>
             </div>
 
             {/* Enterprise Plan */}
-            <div className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800 flex flex-col justify-between">
+            <div className="p-7 rounded-2xl bg-slate-900/40 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all">
               <div>
-                <h3 className="text-xl font-bold text-white">Enterprise</h3>
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  Large Scale
+                </span>
+                <h3 className="text-xl font-bold text-white mt-3">Enterprise</h3>
                 <p className="text-slate-400 text-xs mt-1">Custom multi-tenant deployments</p>
-                <div className="mt-6 flex items-baseline gap-1">
-                  <span className="text-4xl font-extrabold text-white">Custom</span>
+                <div className="mt-5 flex items-baseline gap-1">
+                  <span className="text-4xl font-extrabold text-white">₹5,999</span>
+                  <span className="text-slate-400 text-xs">/ month</span>
                 </div>
-                <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Unlimited Employees</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Dedicated Cloud Database</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> 24/7 SLA Priority Support</li>
+                <ul className="mt-6 space-y-2.5 text-xs text-slate-300">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Unlimited Employees</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Dedicated Cloud Shard DB</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Custom Domain &amp; White Label</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> 24/7 Dedicated Account Manager</li>
                 </ul>
               </div>
-              <Link href="/login" className="mt-8 block text-center py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 transition-colors">
-                Contact Sales
+              <Link href="/login" className="mt-7 block text-center py-2.5 rounded-xl font-semibold text-xs bg-slate-800 hover:bg-slate-700 text-white transition-colors">
+                Contact Enterprise
               </Link>
             </div>
           </div>
